@@ -9,8 +9,7 @@ class Database {
     let files = [];
 
     try {
-      files = fs.readdirSync(directory)
-        .filter(fname => fname.endsWith('.tsv'));
+      files = fs.readdirSync(directory);
     }
     catch (e) {
       fs.mkdirSync(directory);
