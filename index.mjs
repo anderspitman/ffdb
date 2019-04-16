@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 
 class Database {
@@ -162,8 +162,4 @@ class DSVWriter {
 }
 
 
-const db = new Database('db');
-
-const all = db.getTable('file').getAll();
-console.log(all.filter(r => r.id > 1 && r.id < 5));
-db.persist();
+export { Database };
