@@ -28,7 +28,7 @@ class Database {
       const contents = fs.readFileSync(path);
       const { columns, records } = parser.parse(fs.readFileSync(path, 'utf-8'));
 
-      if (records !== null) {
+      if (columns.length > 0) {
         const table = new Table(columns, records);
         this._tables[base] = table;
       }
@@ -70,6 +70,16 @@ class Table {
 
   getByColumn(col, value) {
     return this._records.filter(x => x[col] === value);
+  }
+
+  // TODO: type checking
+  append(record) {
+    const entry = {};
+    for (const column of this.getColumns()) {
+      entry[column.name] = record[column.name];
+    }
+
+    this._records.push(entry);
   }
 }
 
